@@ -5,13 +5,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { ConnectionService } from '../../service/connection.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-take-input',
   standalone: true,
   imports: [
-    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatIconModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    HttpClientModule
   ],
   templateUrl: './take-input.component.html',
   styleUrl: './take-input.component.scss'
@@ -21,7 +30,8 @@ export class TakeInputComponent {
   errorMessage = signal('');
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service: ConnectionService
   ) { }
 
   jobPost = this.fb.group({
@@ -34,9 +44,17 @@ export class TakeInputComponent {
     postURL: ['']
   });
 
-
   save() {
-    console.log(this.jobPost.value);
+    let currentDate = new Date();
+    this.jobPost.value.date = currentDate.getDate() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear();
+    this.service.putData(this.jobPost.value).subscribe(
+      (res) => {
+        this.jobPost.reset();
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 
   updateErrorMessage() {
