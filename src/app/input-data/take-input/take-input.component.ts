@@ -40,7 +40,6 @@ export class TakeInputComponent {
     lName: [''],
     compnayName: ['', [Validators.required]],
     date: [''],
-    time: [''],
     postURL: ['']
   });
 

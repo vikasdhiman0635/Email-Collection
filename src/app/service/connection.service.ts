@@ -14,7 +14,7 @@ export class ConnectionService {
   ) { }
 
   putData(data: any): Observable<any> {
-    let editURL = this.baseURL + "" + data.date + ".json";
+    let editURL = this.baseURL + "" + data.date + "/" + data.email.split("@")[0].replace(".", "_") + "_" + data.compnayName + ".json";
     return this.http.put(editURL, data);
   }
 
