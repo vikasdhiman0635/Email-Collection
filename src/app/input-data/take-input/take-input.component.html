@@ -1,0 +1,45 @@
+<br>
+
+<h3>Enter new email Job post</h3>
+
+<br>
+<div class="container">
+    <form [formGroup]="jobPost" (ngSubmit)="save()">
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" (blur)="updateErrorMessage()"
+                required />
+            @if (jobPost.controls.email.invalid) {
+            <mat-error>{{errorMessage()}}</mat-error>
+            }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="Jhon" formControlName="fName">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Doe" formControlName="lName">
+        </mat-form-field>
+
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Company Name</mat-label>
+            <input matInput placeholder="Google, facebook" formControlName="compnayName">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Post URL</mat-label>
+            <input matInput placeholder="htts://" formControlName="postURL">
+        </mat-form-field>
+        <br>
+        <br>
+        <button type="submit" mat-fab extended>
+            <mat-icon>favorite</mat-icon>
+            Pass
+        </button>
+    </form>
+</div>
+<br>
