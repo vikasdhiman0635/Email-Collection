@@ -2,8 +2,8 @@ name: Email Connection
 
 on:
   push:
-    branches: [ main ]
-    
+    branches: [main]
+
   # Run workflow manually
   workflow_dispatch:
 
@@ -33,8 +33,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@main
         with:
-          name: portfolio
-          path: dist/portfolio
+          name: collection
+          path: dist/collection
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
