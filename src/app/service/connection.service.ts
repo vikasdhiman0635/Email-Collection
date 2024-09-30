@@ -13,9 +13,16 @@ export class ConnectionService {
     private http: HttpClient
   ) { }
 
-  putData(data: any): Observable<any> {
-    let editURL = this.baseURL + "" + data.date + "/" + data.email.split("@")[0].replace(".", "_") + "_" + data.compnayName + ".json";
+  putData(data: any, compnayName: any): Observable<any> {
+    console.log(data);
+    // let editURL = this.baseURL + "" + data.date + "/" + data.email.split("@")[0].replace(".", "_") + "_" + data.compnayName + ".json";
+    let editURL = this.baseURL + "" + compnayName + ".json";
     return this.http.put(editURL, data);
+  }
+
+  getCompnay(compnayName: any): Observable<any> {
+    let editURL = this.baseURL + "" + compnayName + ".json";
+    return this.http.get(editURL);
   }
 
 }
